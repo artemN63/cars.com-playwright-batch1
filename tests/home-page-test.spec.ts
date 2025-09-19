@@ -8,6 +8,11 @@ test.beforeEach(async ({page}) => {
 test('Main title validation', async ({page}) => {
     let homePage = new HomePage(page)
 
-    let expectedTitle = 'Imagine the possibilities'
-    await homePage.titleValidation(expectedTitle)
+    await homePage.mainTitleValidation()
+})
+
+test('Filter title validation', async ({page}) => {
+    let homePage = new HomePage(page)
+
+    await homePage.filterTitleValidation()
 })
