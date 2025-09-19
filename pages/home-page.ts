@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test"
+import { Page, Locator, expect } from "@playwright/test"
 
 export class HomePage {
 
@@ -8,6 +8,10 @@ export class HomePage {
 
     constructor(page: Page) {
         this.mainTitle = page.locator('h1[class="hero-title "] span')
+    }
+
+    async titleValidation(expectedTitle): Promise<void> {
+        await expect(this.mainTitle).toHaveText(expectedTitle)
     }
 
 }

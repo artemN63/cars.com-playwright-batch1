@@ -9,5 +9,5 @@ test('Main title validation', async ({page}) => {
     let homePage = new HomePage(page)
 
     let expectedTitle = 'Imagine the possibilities'
-    await expect(homePage.mainTitle).toHaveText(expectedTitle)
+    await homePage.titleValidation(expectedTitle)
 })
