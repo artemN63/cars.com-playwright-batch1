@@ -1,13 +1,17 @@
 import {test, expect} from '@playwright/test'
 import { HomePage } from '../pages/home-page'
 
+let homePage: HomePage;
+
 test.beforeEach(async ({page}) => {
+    homePage = new HomePage(page)
     await page.goto('https://www.cars.com/')
 })
 
 test('Main title validation', async ({page}) => {
-    let homePage = new HomePage(page)
+    await homePage.mainTitleValidation()
+})
 
-    let expectedTitle = 'Imagine the possibilities'
-    await homePage.titleValidation(expectedTitle)
+test('Filter title validation', async ({page}) => {
+    await homePage.filterTitleValidation()
 })
