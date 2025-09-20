@@ -19,6 +19,10 @@ test('Filter title validation', async ({page}) => {
     await homePage.filterTitleValidation()
 })
 
+test('Your Garage block text validation', async ({page}) => {
+    await homePage.yourGarageBlockElementsValidation()
+})
+
 test('Filter options validation', async ({page}) => {
     await homePage.searchCarWithFilters('bmw', 'bmw-m3', '40', '60016')
 

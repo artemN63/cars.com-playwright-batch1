@@ -18,6 +18,15 @@ export class HomePage {
     expectedMainTitle: string = 'Imagine the possibilities'
     expectedFilterTitle: string = '- Or search by -'
 
+    // Your Garage - Block
+    yourGarageTitle: Locator
+    yourGarageSubTitle: Locator
+    yourGarageDescription: Locator
+    learMoreLinkText: Locator
+    getStartedButton: Locator
+    haveAccountText: Locator
+    signInLinkText: Locator
+
     constructor(page: Page) {
         this.mainTitle = page.locator('h1[class="hero-title "] span')
 
@@ -28,6 +37,14 @@ export class HomePage {
         this.distanceFilterOption = page.locator('select[name="maximum_distance"]')
         this.zipCodeInput = page.locator('input[name="zip"]')
         this.showMatchesButton = page.locator('spark-fieldset[variant="melded"] spark-button')
+
+        this.yourGarageTitle = page.locator('div[class="widget"] h2[class="spark-heading-3"]')
+        this.yourGarageSubTitle = page.locator('div[class="widget"] h3[role="presentation"]')
+        this.yourGarageDescription = page.locator('div[class="widget__contents"] p').nth(0)
+        this.learMoreLinkText = page.locator('a[href="/profile/your-garage"]')
+        this.getStartedButton = page.locator('spark-button[class="add-car"]')
+        this.haveAccountText = page.getByText('Already have an account? Sign in')
+        this.signInLinkText = page.locator('spark-button[id="sign-in"]')
 
         this.searchBar = page.locator('input[name="one_hitter"]')
     }
@@ -46,6 +63,17 @@ export class HomePage {
         await this.distanceFilterOption.selectOption(distance)
         await this.zipCodeInput.fill(zipCode)
         await this.showMatchesButton.click()
+    }
+
+    async yourGarageBlockElementsValidation(): Promise<void> {
+        await expect(this.yourGarageTitle).toHaveText('Your Garage')
+        await expect(this.yourGarageSubTitle).toHaveText('Add your car. Track its value.')
+        await expect(this.yourGarageDescription).toHaveText
+        ('Add your car to Your Garage to track its market value and cash in when the time is right to sell. Learn more')
+        await expect(this.learMoreLinkText).toHaveText('Learn more')
+        await expect(this.getStartedButton).toHaveText('Get started')
+        //await expect(this.haveAccountText).toHaveText('Already have an account? Sign in')
+        await expect(this.signInLinkText).toHaveText('Sign in')
     }
 
 }
