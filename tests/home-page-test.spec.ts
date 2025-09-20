@@ -15,3 +15,7 @@ test('Main title validation', async ({page}) => {
 test('Filter title validation', async ({page}) => {
     await homePage.filterTitleValidation()
 })
+
+// test('Search car in search bar validation', async ({page}) => {
+//     await homePage.searchBar.fill('Porsche 911')
+// })
