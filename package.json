@@ -22,5 +22,8 @@
   "homepage": "https://github.com/artemN63/cars.com-playwright-batch1#readme",
   "dependencies": {
     "@playwright/test": "^1.55.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2"
   }
 }
