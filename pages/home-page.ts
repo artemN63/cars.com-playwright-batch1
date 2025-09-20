@@ -27,7 +27,7 @@ export class HomePage {
         this.modelFilterOption = page.locator('select[name="models[]"]')
         this.distanceFilterOption = page.locator('select[name="maximum_distance"]')
         this.zipCodeInput = page.locator('input[name="zip"]')
-        this.showMatchesButton = page.locator('spark-button[trid="ispsHAiuJe1hiWnAnf44kA"]')
+        this.showMatchesButton = page.locator('spark-fieldset[variant="melded"] spark-button')
 
         this.searchBar = page.locator('input[name="one_hitter"]')
     }
@@ -38,6 +38,14 @@ export class HomePage {
 
     async filterTitleValidation(): Promise<void> {
         await expect(this.filterTitle).toHaveText(this.expectedFilterTitle)
+    }
+
+    async searchCarWithFilters(make: string, model: string, distance: string, zipCode: string): Promise<void> {
+        await this.makeFilterOption.selectOption(make)
+        await this.modelFilterOption.selectOption(model)
+        await this.distanceFilterOption.selectOption(distance)
+        await this.zipCodeInput.fill(zipCode)
+        await this.showMatchesButton.click()
     }
 
 }
