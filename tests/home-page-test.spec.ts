@@ -20,9 +20,8 @@ test('Filter title validation', async ({page}) => {
 })
 
 test('Filter options validation', async ({page}) => {
-    let make = 'bmw'
-    let model = 'bmw-m3'
+    await homePage.searchCarWithFilters('bmw', 'bmw-m3', '40', '60016')
 
-    await homePage.searchCarWithFilters(make, model, '40', '60016')
-    await carsForSalePage.filtersValidation(' BMW ', ' M3 ')
+    let expectedTags = ['BMW', 'M3']
+    await carsForSalePage.filtersValidation(expectedTags)
 })

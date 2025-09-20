@@ -2,17 +2,19 @@ import { Page, Locator, expect } from "@playwright/test"
 
 export class CarsForSalePage {
 
-    makeFilterOption: Locator
-    modelFilterOption: Locator
+    tags: Locator
 
     constructor(page: Page) {
-        this.makeFilterOption = page.locator('span[class="sds-filter sds-filter--applied active-filter-tag"]').nth(1)
-        this.modelFilterOption = page.locator('span[class="sds-filter sds-filter--applied active-filter-tag"]').nth(2)
+        this.tags = page.locator('div[id="active_filter_tags"]')
     }
 
-    filtersValidation(make: string, model: string): void {
-        expect(this.makeFilterOption).toHaveText(make)
-        expect(this.modelFilterOption).toHaveText(model)
+    async filtersValidation(expectedTags: string[]): Promise<void> {
+        for(let i = 0; i < expectedTags.length; i++) {
+            let actualCurrentTagElement = this.tags.getByText(expectedTags[i])
+
+            await expect(actualCurrentTagElement).toHaveText(expectedTags[i])
+            await expect(actualCurrentTagElement).toBeVisible()
+        }
     }
 
 }
